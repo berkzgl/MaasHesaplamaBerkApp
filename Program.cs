@@ -18,7 +18,7 @@ namespace MaasHesaplamaBerkApp
             Console.WriteLine("İşe giriş yılını giriniz: ");
             insan1.Yıl = int.Parse(Console.ReadLine());
 
-            insan1.Hesap = (((DateTime.Now.Year - insan1.Yıl) * insan1.katsayi) * insan1.maas);
+            insan1.Hesap = ((insan1.Yıl * insan1.katsayi) * insan1.maas);
 
             Console.WriteLine(insan1.PersonelBilgileri());
         }
@@ -60,12 +60,16 @@ namespace MaasHesaplamaBerkApp
             public int Yıl
             {
                 get { return yıl; }
-                set { yıl = value; }
+                set 
+                { 
+                    yıl = DateTime.Now.Year - value;
+                    
+                }
             }
 
             public string PersonelBilgileri()
             {
-                return $"\n Personel adı: {this.ad}\n Personel soyadı: {this.soyad}\n Maaşı: {this.hesap}TL";
+                return $"\n Personel adı: {this.ad}\n Personel soyadı: {this.soyad}\n Maaşı: {this.hesap} TL";
             }
 
         }
